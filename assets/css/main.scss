@@ -1,6 +1,117 @@
 ---
 ---
 
+
+/* RESPONSIVE BREAKPOINTS */
+$responsive_xs_max: 575;
+
+$responsive_sm_min: $responsive_xs_max + 1;
+$responsive_sm_max: 767;
+
+$responsive_md_min: $responsive_sm_max + 1;
+$responsive_md_max: 991;
+
+$responsive_lg_min: $responsive_md_max + 1;
+$responsive_lg_max: 1199;
+
+$responsive_xl_min: $responsive_lg_max + 1;
+$responsive_xl_max: 1399;
+
+$responsive_xxl_min: $responsive_xl_max + 1;
+
+/* MEDIA VIEWPORT WIDTHS */
+$media_xs: "(max-width: #{$responsive_xs_max}px)";
+$media_sm: "(min-width: #{$responsive_sm_min}px) and (max-width: #{$responsive_sm_max}px)";
+$media_sm_min: "(min-width: #{$responsive_sm_min}px)";
+$media_sm_max: "(max-width: #{$responsive_sm_max}px)";
+$media_md: "(min-width: #{$responsive_md_min}px) and (max-width: #{$responsive_md_max}px)";
+$media_md_min: "(min-width: #{$responsive_md_min}px)";
+$media_md_max: "(max-width: #{$responsive_md_max}px)";
+$media_lg: "(min-width: #{$responsive_lg_min}px) and (max-width: #{$responsive_lg_max}px)";
+$media_lg_min: "(min-width: #{$responsive_lg_min}px)";
+$media_lg_max: "(max-width: #{$responsive_lg_max}px)";
+$media_xl: "(min-width: #{$responsive_xl_min}px) and (max-width: #{$responsive_xl_max}px)";
+$media_xl_min: "(min-width: #{$responsive_xl_min}px)";
+$media_xl_max: "(max-width: #{$responsive_xl_max}px)";
+$media_xxl: "(min-width: #{$responsive_xxl_min}px)";
+
+
+$font_rem_xxxxxxl: 4.768rem;
+$font_rem_xxxxxl: 3.8156rem;
+$font_rem_xxxxl: 3.052rem;
+$font_rem_xxxl: 2.441rem;
+$font_rem_xxl: 1.953rem;
+$font_rem_xl: 1.563rem;
+$font_rem_l: 1.25rem;
+$font_rem_m: 1rem;
+$font_rem_s: .8rem;
+$font_rem_xs: .64rem;
+$font_rem_xxs: .512rem;
+
+
+$font_ci: 'Muli', sans-serif;
+
+@mixin font_sans_light {
+  font-family: $font_ci;
+  font-weight: 300;
+}
+
+@mixin font_sans_regular {
+  font-family: $font_ci;
+  font-weight: 400;
+}
+
+@mixin font_sans_bold {
+  font-family: $font_ci;
+  font-weight: 700;
+}
+
+@mixin font_sans_black {
+  font-family: $font_ci;
+  font-weight: 800;
+}
+
+
+
+
 body {
-  color: red;
+  @include font_sans_light;
+  letter-spacing: 0;
+}
+
+.masthead {
+  padding: 0;
+  height: 100vh;
+  .text-center {
+    padding-top: 10vh 0 0;
+  }
+  h1 {
+    text-transform: uppercase;
+    @include font_sans_black;
+    line-height: 1em;
+    letter-spacing: .1em;
+    text-align: center;
+    font-size: 5rem;
+    @media #{$media_md} {
+      font-size: 4rem;
+    }
+    @media #{$media_sm} {
+      font-size: 3rem;
+    }
+    @media #{$media_xs} {
+      font-size: 2.6rem;
+    }
+  }
+  h2 {
+    @include font_sans_light;
+    text-align: center;
+    letter-spacing: 0;
+    font-size: $font_rem_m;
+    @media #{$media_lg_min} {
+      font-size: $font_rem_l;
+    }
+  }
+  .audio-player {
+    margin-bottom: 5vh;
+  }
 }

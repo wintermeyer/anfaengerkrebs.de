@@ -295,22 +295,3 @@ a:focus, a:hover {
 footer {
   padding: 5rem 0;
 }
-
-.avatar {
-  border-radius:50%
-}
-
-.avatar-sm {
-  width: 48px;
-  height:48px
-}
-
-.avatar-md {
-  width: 64px;
-  height:64px
-}
-
-.avatar-lg {
-  width: 96px;
-  height:96px
-}

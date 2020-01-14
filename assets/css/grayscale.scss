@@ -1,0 +1,61 @@
+---
+---
+
+@import 'assets/css/variables.scss';
+@import 'assets/css/mixins.scss';
+@import 'assets/css/navbar.scss';
+@import 'assets/css/masthead.scss';
+@import 'assets/css/buttons.scss';
+@import 'assets/css/about.scss';
+@import 'assets/css/projects.scss';
+@import 'assets/css/signup.scss';
+@import 'assets/css/contact.scss';
+
+body {
+  font-family: 'Nunito';
+  letter-spacing: 0.0625em;
+}
+
+a {
+  color: $primary;
+  &:focus,
+  &:hover {
+    text-decoration: none;
+    color: darken($primary, 20%);
+  }
+}
+
+.bg-black {
+  background-color: $black !important;
+}
+
+.bg-primary {
+  background-color: $primary !important;
+}
+
+.text-primary {
+  color: $primary !important;
+}
+
+footer {
+  padding: 5rem 0;
+}
+
+.avatar {
+  border-radius:50%
+}
+
+.avatar-sm {
+  width: 48px;
+  height:48px
+}
+
+.avatar-md {
+  width: 64px;
+  height:64px
+}
+
+.avatar-lg {
+  width: 96px;
+  height:96px
+}

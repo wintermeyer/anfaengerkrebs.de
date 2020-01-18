@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /datenschutzerklaerung.html
+Disallow: /impressum.html

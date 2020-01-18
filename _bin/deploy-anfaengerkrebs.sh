@@ -15,7 +15,6 @@ echo
 
 # Create a new export directory
 #
-cd ~/Github/$URL/
 tmp_dir=$(mktemp -d -t www-XXXXXXXXXX)
 cp -r _site $tmp_dir
 
@@ -52,12 +51,9 @@ tempfoo=`basename $0`
 TMPFILE=`mktemp /tmp/${tempfoo}.XXXXXX` || exit 1
 
 echo "* Deploy with rsync"
-#rsync --progress -rlpcgoDvz --log-file=$TMPFILE --delete $tmp_dir/_site/* stefan@mothership.frankfurt.amooma.de:/var/www/$URL/current/
+rsync --progress -rlpcgoDvz --log-file=$TMPFILE --delete $tmp_dir/_site/* stefan@$URL:/var/www/$URL/current/
 
-# Remove the tempfile
+# Remove the tempfile and tempdir
 #
-#rm -f $TMPFILE
-
-# Remove the export
-#
-#rm -rf $tmp_dir
+rm -f $TMPFILE
+rm -rf $tmp_dir

@@ -5,7 +5,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xml:lang="{{ site.lang }}">
 
     <channel>
-		<atom:link href="{{ site.baseurl }}/feeds/m4a.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="{{ site.url }}/feeds/m4a.xml" rel="self" type="application/rss+xml" />
     {% include podcast-feed-header.xml %}
 
     {% for post in site.posts %}
@@ -15,17 +15,19 @@
             <itunes:author>{{ site.author }}</itunes:author>
             <itunes:subtitle>{{ post.subtitle | xml_escape }}</itunes:subtitle>
             <itunes:summary>{{ post.summary | xml_escape }}</itunes:summary>
-            <itunes:image href="{{ site.baseurl }}/assets/img/cover-art.png" />
+            <itunes:image href="{{ site.url }}/assets/img/cover-art.png" />
             <itunes:category text="Health">
             </itunes:category>
             {% assign m4a_file_name = './assets/audio/episodes/' | append: post.filename_prefix | append: '/' | append: post.filename_prefix | append: '.m4a' %}
-            <enclosure url="{{ site.baseurl }}/assets/audio/episodes/{{ post.filename_prefix }}/{{ post.filename_prefix }}.m4a" length="{{ m4a_file_name | file_size }}" type="audio/m4a"/>
+            <enclosure url="{{ site.url }}/assets/audio/episodes/{{ post.filename_prefix }}/{{ post.filename_prefix }}.m4a" length="{{ m4a_file_name | file_size }}" type="audio/x-m4a"/>
             <guid>{{ post.filename_prefix }}</guid>
             <pubDate>{{ post.publication_date | date_to_rfc822 }}</pubDate>
             <itunes:duration>{{ post.duration }}</itunes:duration>
             <itunes:explicit>no</itunes:explicit>
             <description>{{ post.summary | xml_escape }}</description>
             <itunes:keywords>Krebs</itunes:keywords>
+            <itunes:episode>1</itunes:episode>
+            <itunes:episodeType>trailer</itunes:episodeType>
   		  </item>
     {% endif %}
   {% endfor %}

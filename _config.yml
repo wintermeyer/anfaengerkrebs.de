@@ -37,8 +37,8 @@ github_username:  wintermeyer
 
 # Build settings
 # theme: minima
-plugins:
-  - jekyll-feed
+# plugins:
+#   - jekyll-feed
 
 sass:
   sass_dir: assets/css/

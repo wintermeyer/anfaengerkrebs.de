@@ -13,5 +13,6 @@
 </itunes:owner>
 <itunes:category text="Health">
 </itunes:category>
-<itunes:image href="{{ site.baseurl }}/assets/img/cover-art.png" />
+<itunes:image href="{{ site.url }}/assets/img/cover-art.png" />
 <itunes:explicit>no</itunes:explicit>
+<itunes:type>serial</itunes:type>

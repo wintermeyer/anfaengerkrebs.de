@@ -1,8 +1,8 @@
 <title>Anfängerkrebs</title>
 <link>https://www.anfaengerkrebs.de</link>
 <language>de</language>
-<copyright>&#xA9; {{ site.time | date: "%Y" }} by Stefan Wintermeyer</copyright>
-<itunes:subtitle>{{ site.description | xml_escape }}</itunes:subtitle>
+<copyright>&#xA9; {{ site.time | date: "%Y" }} by {{ site.author }}</copyright>
+<itunes:subtitle>{{ site.subtitle | xml_escape }}</itunes:subtitle>
 <itunes:author>{{ site.author }}</itunes:author>
 <itunes:summary>{{ site.description }}</itunes:summary>
 <description>{{ site.description }}</description>
@@ -11,8 +11,7 @@
   <itunes:name>Stefan Wintermeyer</itunes:name>
   <itunes:email>stefan@wintermeyer.de</itunes:email>
 </itunes:owner>
-<itunes:category text="Society &amp; Culture">
-<itunes:category text="Places &amp; Travel"/>
+<itunes:category text="Health">
 </itunes:category>
 <itunes:image href="{{ site.baseurl }}/assets/img/cover-art.png" />
 <itunes:explicit>no</itunes:explicit>

@@ -16,10 +16,10 @@
             <itunes:subtitle>{{ post.subtitle | xml_escape }}</itunes:subtitle>
             <itunes:summary>{{ post.summary | xml_escape }}</itunes:summary>
             <itunes:image href="{{ site.baseurl }}/assets/img/cover-art.png" />
-            <itunes:category text="Places &amp; Travel"/>
-            <itunes:category text="Society &amp; Culture">
+            <itunes:category text="Health">
             </itunes:category>
-            <enclosure url="{{ site.baseurl }}/assets/podcasts/{{ post.date | date: '%Y' }}/{{ post.podcast.m4a.file_name }}" length="{{ post.podcast.m4a.file_size }}" type="audio/m4a"/>
+            {% assign m4a_file_name = './assets/audio/episodes/' | append: post.filename_prefix | append: '/' | append: post.filename_prefix | append: '.m4a' %}
+            <enclosure url="{{ site.baseurl }}/assets/audio/episodes/{{ post.filename_prefix }}/{{ post.filename_prefix }}.m4a" length="{{ m4a_file_name | file_size }}" type="audio/m4a"/>
             <guid>{{ post.filename_prefix }}</guid>
             <pubDate>{{ post.publication_date | date_to_rfc822 }}</pubDate>
             <itunes:duration>{{ post.duration }}</itunes:duration>

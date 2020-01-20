@@ -1,0 +1,48 @@
+---
+
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xml:lang="{{ site.lang }}">
+
+    <channel>
+		<atom:link href="{{ site.url }}/feeds/mp3.xml" rel="self" type="application/rss+xml" />
+    {% include podcast-feed-header.xml %}
+
+    {% assign number_of_trailers = 0 %}
+    {% for post in site.posts %}
+      {% if post.episode_type == "trailer" %}
+      {{ post.episode_type }}
+        {% assign number_of_trailers = number_of_trailers | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+
+    {% for post in site.posts %}
+      {% if post.duration %}
+        <item>
+            <title>{{ post.title | xml_escape }}</title>
+            <itunes:author>{{ site.author }}</itunes:author>
+            <itunes:subtitle>{{ post.subtitle | xml_escape }}</itunes:subtitle>
+            <itunes:summary>{{ post.summary | xml_escape }}</itunes:summary>
+            <itunes:image href="{{ site.url }}/assets/img/cover-art.png" />
+            <itunes:category text="Health">
+            </itunes:category>
+            {% assign mp3_file_name = './assets/audio/episodes/' | append: post.filename_prefix | append: '/' | append: post.filename_prefix | append: '.mp3' %}
+            <enclosure url="{{ site.url }}/assets/audio/episodes/{{ post.filename_prefix }}/{{ post.filename_prefix }}.mp3" length="{{ mp3_file_name | file_size }}" type="audio/mp3"/>
+            <guid>{{ post.filename_prefix }}</guid>
+            <pubDate>{{ post.publication_date | date_to_rfc822 }}</pubDate>
+            <itunes:duration>{{ post.duration }}</itunes:duration>
+            <itunes:explicit>no</itunes:explicit>
+            <description>{{ post.summary | xml_escape }}</description>
+            <itunes:keywords>Krebs</itunes:keywords>
+            <itunes:season>1</itunes:season>
+            {% assign episode_number = forloop.index | minus: number_of_trailers %}
+            {% if post.episode_type != "trailer" %}
+            <itunes:episode>{{ episode_number }}</itunes:episode>
+            {% else %}
+            <itunes:episodeType>{{ post.episode_type }}</itunes:episodeType>
+            {% endif %}
+  		  </item>
+    {% endif %}
+  {% endfor %}
+	</channel>
+</rss>

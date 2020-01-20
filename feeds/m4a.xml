@@ -8,6 +8,14 @@
 		<atom:link href="{{ site.url }}/feeds/m4a.xml" rel="self" type="application/rss+xml" />
     {% include podcast-feed-header.xml %}
 
+    {% assign number_of_trailers = 0 %}
+    {% for post in site.posts %}
+      {% if post.episode_type == "trailer" %}
+      {{ post.episode_type }}
+        {% assign number_of_trailers = number_of_trailers | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+
     {% for post in site.posts %}
       {% if post.duration %}
         <item>
@@ -26,8 +34,13 @@
             <itunes:explicit>no</itunes:explicit>
             <description>{{ post.summary | xml_escape }}</description>
             <itunes:keywords>Krebs</itunes:keywords>
-            <itunes:episode>1</itunes:episode>
-            <itunes:episodeType>trailer</itunes:episodeType>
+            <itunes:season>1</itunes:season>
+            {% assign episode_number = forloop.index | minus: number_of_trailers %}
+            {% if post.episode_type != "trailer" %}
+            <itunes:episode>{{ episode_number }}</itunes:episode>
+            {% else %}
+            <itunes:episodeType>{{ post.episode_type }}</itunes:episodeType>
+            {% endif %}
   		  </item>
     {% endif %}
   {% endfor %}

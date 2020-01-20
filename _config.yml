@@ -18,6 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
+lang: de
 title: Anfängerkrebs Podcast
 author: Stefan Wintermeyer
 email: stefan@wintermeyer.de

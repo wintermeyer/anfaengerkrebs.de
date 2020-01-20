@@ -79,6 +79,9 @@ body {
 .masthead {
   padding: 0;
   height: 100vh;
+  @media #{$media_xs} {
+    height: 91vh;
+  }
   .text-center {
     padding-top: 10vh 0 0;
   }
@@ -89,6 +92,7 @@ body {
     letter-spacing: .1em;
     text-align: center;
     font-size: 6rem;
+    padding: .15em 0;
     @media #{$media_md} {
       font-size: 4rem;
     }

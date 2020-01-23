@@ -20,7 +20,7 @@
       {% if post.duration %}
         <item>
             <title>{{ post.title | xml_escape }}</title>
-            <itunes:author>{{ site.author }}</itunes:author>
+            <itunes:author>Stefan Wintermeyer, Thomas Reintjes</itunes:author>
             <itunes:subtitle>{{ post.subtitle | xml_escape }}</itunes:subtitle>
             <itunes:summary>{{ post.summary | xml_escape }}</itunes:summary>
             <itunes:image href="{{ site.url }}/assets/img/cover-art.png" />

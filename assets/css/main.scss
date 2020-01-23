@@ -35,6 +35,8 @@ $media_xl_min: "(min-width: #{$responsive_xl_min}px)";
 $media_xl_max: "(max-width: #{$responsive_xl_max}px)";
 $media_xxl: "(min-width: #{$responsive_xxl_min}px)";
 
+$color_mint: #64a19d;
+
 
 $font_rem_xxxxxxl: 4.768rem;
 $font_rem_xxxxxl: 3.8156rem;
@@ -115,4 +117,41 @@ body {
   .audio-player {
     margin-bottom: 5vh;
   }
+}
+
+.btn-podcast-apple {
+  width: 14em;
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.btn-podcast-podlove {
+  background: $color_mint;
+  color: #fff;
+  width: 14em;
+  text-align: center;
+  padding: .85em 0;
+  display: inline-block;
+  border-radius: 8px;
+  border: 1px solid #fff;
+  line-height: 1em;
+  i {
+    display: inline-block;
+    font-size: 1.25em;
+    margin: 0 .25em 0 0;
+    vertical-align: text-bottom;
+  }
+  span {
+    display: inline-block;
+    line-height: 1em;
+  }
+  body:not(.touch) &:hover {
+    color: $color_mint;
+    background: #fff;
+  }
+  
+  
 }

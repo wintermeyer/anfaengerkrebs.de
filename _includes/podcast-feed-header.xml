@@ -4,8 +4,8 @@
 <copyright>&#xA9; {{ site.time | date: "%Y" }} by {{ site.author }}</copyright>
 <itunes:subtitle>{{ site.subtitle | xml_escape }}</itunes:subtitle>
 <itunes:author>{{ site.author }}</itunes:author>
-<itunes:summary>{{ site.description }}</itunes:summary>
-<description>{{ site.description }}</description>
+<itunes:summary>{{ site.description | xml_escape }}</itunes:summary>
+<description>{{ site.description | xml_escape }}</description>
 <webMaster>Stefan Wintermeyer (stefan@wintermeyer.de)</webMaster>
 <itunes:owner>
   <itunes:name>Stefan Wintermeyer</itunes:name>

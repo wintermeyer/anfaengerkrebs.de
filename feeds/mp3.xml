@@ -23,7 +23,8 @@
             <itunes:author>Stefan Wintermeyer und Thomas Reintjes</itunes:author>
             <itunes:subtitle>{{ post.subtitle | xml_escape }}</itunes:subtitle>
             <itunes:summary>{{ post.summary | xml_escape }}</itunes:summary>
-            <itunes:image href="{{ site.url }}/assets/img/cover-art.png" />
+            {% assign episode_cover_art_file = 'assets/img/episode-cover-art/' | append: post.filename_prefix | append: '.jpg' %}
+            <itunes:image href="{{ site.url }}/{{ episode_cover_art_file }}" />
             <itunes:category text="Health">
             </itunes:category>
             {% assign mp3_file_name = './assets/audio/episodes/' | append: post.filename_prefix | append: '/' | append: post.filename_prefix | append: '.mp3' %}

@@ -11,8 +11,9 @@
   <itunes:name>Stefan Wintermeyer</itunes:name>
   <itunes:email>stefan@wintermeyer.de</itunes:email>
 </itunes:owner>
-<itunes:category text="Health">
+<itunes:category text="Health &amp; Fitness">
+<itunes:category text="Medicine" />
 </itunes:category>
-<itunes:image href="{{ site.url }}/assets/img/cover-art.png" />
+<itunes:image href="{{ site.url }}/assets/img/cover-art.jpg" />
 <itunes:explicit>no</itunes:explicit>
 <itunes:type>serial</itunes:type>

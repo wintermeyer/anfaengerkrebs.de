@@ -36,7 +36,7 @@
             <description>{{ post.summary | xml_escape }}</description>
             <itunes:keywords>Krebs</itunes:keywords>
             <itunes:season>1</itunes:season>
-            {% assign episode_number = forloop.index | minus: number_of_trailers %}
+            {% assign episode_number = forloop.index | minus: number_of_trailers | plus: 1 %}
             {% if post.episode_type != "trailer" %}
             <itunes:episode>{{ episode_number }}</itunes:episode>
             {% else %}

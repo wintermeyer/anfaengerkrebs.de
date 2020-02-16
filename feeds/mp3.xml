@@ -9,10 +9,12 @@
     {% include podcast-feed-header.xml %}
 
     {% assign number_of_trailers = 0 %}
+    {% assign number_of_episodes = 0 %}
     {% for post in site.posts %}
       {% if post.episode_type == "trailer" %}
-      {{ post.episode_type }}
         {% assign number_of_trailers = number_of_trailers | plus: 1 %}
+      {% else %}
+        {% assign number_of_episodes = number_of_episodes | plus: 1 %}
       {% endif %}
     {% endfor %}
 
@@ -36,7 +38,8 @@
             <description>{{ post.summary | xml_escape }}</description>
             <itunes:keywords>Krebs</itunes:keywords>
             <itunes:season>1</itunes:season>
-            {% assign episode_number = forloop.index | minus: number_of_trailers | plus: 1 %}
+            {% assign dummy = forloop.index | minus: number_of_trailers %}
+            {% assign episode_number = number_of_episodes | minus: dummy %}
             {% if post.episode_type != "trailer" %}
             <itunes:episode>{{ episode_number }}</itunes:episode>
             {% else %}

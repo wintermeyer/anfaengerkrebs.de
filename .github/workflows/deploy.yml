@@ -1,0 +1,83 @@
+name: Build and Deploy Jekyll Site
+
+on:
+  push:
+    branches: [ main, master ]  # Deploy on pushes to main or master
+  workflow_dispatch:            # Allow manual triggers
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for .git metadata
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4.2'  # Using the same version as your local environment
+          bundler-cache: true    # This will cache bundle install automatically
+
+      - name: Install dependencies
+        run: |
+          gem install bundler -v 2.6.5
+          bundle _2.6.5_ config set --local path 'vendor/bundle'
+          bundle _2.6.5_ config set --local frozen false
+          bundle _2.6.5_ install
+
+      - name: Build Jekyll site
+        env: 
+          JEKYLL_ENV: production
+        run: bundle _2.6.5_ exec jekyll build --verbose
+        
+      - name: Verify excluded files
+        run: |
+          echo "Checking for excluded files in _site directory..."
+          
+          # Files that should not be in the production build
+          EXCLUDED_FILES=(
+            "DEPLOYMENT.md"
+            "serve.sh"
+            "Gemfile"
+            "Gemfile.lock"
+            "package.json"
+            "package-lock.json"
+            ".npmignore"
+            "vendor"
+            ".github"
+            "node_modules"
+          )
+          
+          # Check if any excluded files exist in the _site directory
+          FOUND_EXCLUDED=0
+          for file in "${EXCLUDED_FILES[@]}"; do
+            if [ -e "_site/$file" ]; then
+              echo "WARNING: $file was found in _site directory!"
+              FOUND_EXCLUDED=1
+            fi
+          done
+          
+          # If any excluded files were found, fail the build
+          if [ $FOUND_EXCLUDED -eq 1 ]; then
+            echo "ERROR: Excluded files were found in the _site directory. Build failed."
+            exit 1
+          else
+            echo "All good! No excluded files found in _site directory."
+          fi
+      
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+      
+      - name: Deploy via rsync
+        run: |
+          rsync -avz --delete -e "ssh -i ~/.ssh/deploy_key" \
+            _site/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}
+          
+      - name: Cleanup
+        run: rm -f ~/.ssh/deploy_key 

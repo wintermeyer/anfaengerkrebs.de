@@ -7,7 +7,7 @@ source "https://rubygems.org"
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
-gem "jekyll", "~> 4.0.0"
+gem "jekyll", "~> 4.2.0"
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
 # gem "minima", "~> 2.5"
 
@@ -17,15 +17,32 @@ gem "jekyll", "~> 4.0.0"
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
+  gem "jekyll-seo-tag"
 end
 
-# Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
-# and associated library.
-install_if -> { RUBY_PLATFORM =~ %r!mingw|mswin|java! } do
+# Windows and JRuby platform specific gems
+platforms :mingw, :x64_mingw, :mswin, :jruby do
   gem "tzinfo", "~> 1.2"
   gem "tzinfo-data"
+  gem "wdm", "~> 0.1.1"
 end
 
-# Performance-booster for watching directories on Windows
-gem "wdm", "~> 0.1.1", :install_if => Gem.win_platform?
+# Required for serving with Ruby 3+
+gem "webrick", "~> 1.7"
+
+# Required for Ruby 3.4+
+gem "csv"
+gem "logger"
+gem "base64"
+gem "bigdecimal"
+gem "ostruct"
+
+# Update FFI to a version compatible with Ruby 3.4
+gem "ffi", "~> 1.15.5"
+
+# Updated for compatibility
+gem "sassc", "~> 2.4.0"
+
+# Updated Liquid for Ruby 3.4 compatibility
+gem "liquid", "~> 4.0.4"
 
